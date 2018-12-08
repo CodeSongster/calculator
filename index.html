@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>科学计算器</title>
+	<style type="text/css">
+		#calculator {
+			border: 1px solid #bbb;
+			padding: 10px;
+			float: left;
+			margin: 25px;
+		}
+		#output {
+			font-size: 24px;
+			width: 310px;
+			margin: 5px 10px;
+		}
+		button {
+			width: 60px;
+			height: 60px;
+			margin: 10px;
+			font-size: 24px;
+		}
+		.circle {
+			border-radius: 50%;
+			border: 1px solid #bbb;
+			outline: none;
+			background: #fff;
+		}
+		.circle:active {
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<div id="calculator">
+		<input id="output" style="text-align: right;">
+		<br/>
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<button id="clear">AC</button>
+		<br/>
+		<button>4</button>
+		<button>5</button>
+		<button>6</button>
+			<button>+</button>
+		<br/>
+		<button>7</button>
+		<button>8</button>
+		<button>9</button>
+			<button>-</button>
+		<br/>
+		<button>0</button>
+		<button>*</button>
+		<button>/</button>
+		<button id="eval">=</button>
+	</div>
+	<button id="style">style</button>
+	<script type="text/javascript">
+		var $output = document.getElementById("output");
+		var $buttons = document.getElementsByTagName("button");
+		for (var i = 0; i < $buttons.length - 2; i++) {
+			$buttons[i].addEventListener("click", (e) => {
+				$output.value += e.target.innerHTML;
+			})
+		}
+		var $clear = document.getElementById("clear");
+		$clear.addEventListener("click", () => {
+			$output.value = "";
+		})
+		var $eval = document.getElementById("eval");
+		$eval.addEventListener("click", () => {
+			if (!$output.value) {
+				console.log("no input");
+			}
+			$output.value = eval($output.value);
+		})
+		var $style = document.getElementById("style");
+		$style.addEventListener("click", () => {
+			for (var i = 0; i < $buttons.length - 1; i++) {
+				if ($buttons[i].className == 'circle') {
+					$buttons[i].className = '';
+				} else {
+					$buttons[i].className = "circle";
+				}
+			}
+		})
+
+	</script>
+</body>
+</html>
